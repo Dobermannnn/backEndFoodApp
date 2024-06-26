@@ -19,4 +19,10 @@ module.exports = {
       address,
     };
   },
+  addUser: async (name, password, email, address) => {
+    const user = new User({ name, email, password, address });
+    await user.save();
+    console.log("User added successfully:", user);
+    return user;
+  },
 };

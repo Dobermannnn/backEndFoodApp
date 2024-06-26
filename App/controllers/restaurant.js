@@ -1,4 +1,8 @@
-const { getAllRest, getRestaurant } = require("../services/restaurant");
+const {
+  getAllRest,
+  getRestaurant,
+  addRest,
+} = require("../services/restaurant");
 
 module.exports = {
   allRestaurants: async (req, res) => {
@@ -14,6 +18,14 @@ module.exports = {
       const id = req.params.id;
       const restaurant = await getRestaurant(id);
       res.json(restaurant);
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  },
+  addRest: async (req, res) => {
+    try {
+      const { name, address, deliveryCost, theme, img } = req.body;
+      res.json(addRest(name, address, deliveryCost, theme, img));
     } catch (err) {
       res.status(500).send(err);
     }

@@ -23,4 +23,16 @@ module.exports = {
       theme,
     };
   },
+  addRest: async (name, address, deliveryCost, theme, img) => {
+    const restaurant = new Restaurant({
+      name,
+      address,
+      deliveryCost,
+      theme,
+      img,
+    });
+    await restaurant.save();
+    console.log("restaurant added successfully:", restaurant);
+    return restaurant;
+  },
 };
