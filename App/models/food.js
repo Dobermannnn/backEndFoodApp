@@ -4,14 +4,13 @@ const { Schema, model } = mongoose;
 
 const foodSchema = new Schema({
   name: String,
-  // address: Location,
   restaurantId: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "Restaurant",
+    ref: Restaurant,
     required: true,
-    //ok
   },
   price: Number,
+  img: String,
 });
 const Food = model("Food", foodSchema);
 module.exports = Food;
