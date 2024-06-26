@@ -9,6 +9,7 @@ const foodSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "Restaurant",
     required: true,
+    //ok
   },
   price: Number,
 });
