@@ -3,11 +3,20 @@ const { Schema, model } = mongoose;
 
 const restaurantSchema = new Schema({
   name: String,
-  // address: Location,
-  address: String,
   deliveryCost: Number,
   theme: String,
   img: String,
+  address: {
+    type: {
+      type: String,
+      enum: ["Point"],
+      required: true,
+    },
+    coordinates: {
+      type: [Number],
+      required: true,
+    },
+  },
 });
 const Restaurant = model("Restaurant", restaurantSchema);
 module.exports = Restaurant;
