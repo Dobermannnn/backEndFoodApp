@@ -3,6 +3,7 @@ const {
   getRestaurant,
   addRest,
   getRestaurantByTheme,
+  getFreeDelivery,
 } = require("../services/restaurant");
 
 module.exports = {
@@ -27,7 +28,7 @@ module.exports = {
   getRestaurantByTheme: async (req, res) => {
     try {
       const theme = req.params.theme;
-      const restaurant = await getRestaurant(theme);
+      const restaurant = await getRestaurantByTheme(theme);
       res.json(restaurant);
     } catch (err) {
       res.status(500).send(err);
@@ -37,6 +38,14 @@ module.exports = {
     try {
       const { name, address, deliveryCost, theme, img } = req.body;
       res.json(addRest(name, address, deliveryCost, theme, img));
+    } catch (err) {
+      res.status(500).send(err);
+    }
+  },
+  getFreeDelivery: async (req, res) => {
+    try {
+      const restaurants = await getFreeDelivery();
+      res.json(restaurants);
     } catch (err) {
       res.status(500).send(err);
     }

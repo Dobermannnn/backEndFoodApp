@@ -5,8 +5,8 @@ const { Schema, model } = mongoose;
 const foodSchema = new Schema({
   name: String,
   restaurantId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: Restaurant,
+    type: Schema.Types.ObjectId,
+    ref: "Restaurant",
     required: true,
   },
   price: Number,

@@ -21,10 +21,10 @@ module.exports = {
     };
   },
 
-  addFood: async (name, restId, price, img) => {
+  addFood: async (name, restaurantId, price, img) => {
     const food = new Food({
       name,
-      restId,
+      restaurantId,
       price,
       img,
     });

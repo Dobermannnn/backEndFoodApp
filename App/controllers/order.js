@@ -1,4 +1,4 @@
-const { getOrdersByUser } = require("../services/order");
+const { getOrdersByUser, addOrder } = require("../services/order");
 
 module.exports = {
   getOrdersByUser: async (req, res) => {
@@ -8,6 +8,16 @@ module.exports = {
       res.json(orders);
     } catch (err) {
       res.status(500).send(err);
+    }
+  },
+
+  addOrder: async (req, res) => {
+    try {
+      const { userId, restId, foodIds } = req.body;
+      const order = await addOrder(userId, restId, foodIds);
+      res.json(order);
+    } catch (err) {
+      json.status(500).res(err);
     }
   },
 };

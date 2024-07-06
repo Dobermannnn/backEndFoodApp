@@ -46,4 +46,14 @@ module.exports = {
     console.log("restaurant added successfully:", restaurant);
     return restaurant;
   },
+  getFreeDelivery: async () => {
+    const allRests = await Restaurant.find({ deliveryCost: 0 });
+    return allRests.map((rest) => ({
+      name: rest.name,
+      address: rest.address,
+      deliveryCost: rest.deliveryCost,
+      img: rest.img,
+      theme: rest.theme,
+    }));
+  },
 };
