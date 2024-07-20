@@ -13,8 +13,8 @@ module.exports = {
 
   addOrder: async (req, res) => {
     try {
-      const { userId, restId, foodIds } = req.body;
-      const order = await addOrder(userId, restId, foodIds);
+      const { userId, restId, foodIds, quantity } = req.body;
+      const order = await addOrder(userId, restId, foodIds, quantity);
       res.json(order);
     } catch (err) {
       json.status(500).res(err);
