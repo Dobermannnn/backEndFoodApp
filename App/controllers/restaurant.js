@@ -38,8 +38,8 @@ module.exports = {
   },
   addRest: async (req, res) => {
     try {
-      const { name, addressName ,address, deliveryCost, theme, img } = req.body;
-      res.json(addRest(name, addressName, address, deliveryCost, theme, img));
+      const { name, addressName, deliveryCost, theme, img } = req.body;
+      res.json(addRest(name, addressName, deliveryCost, theme, img));
     } catch (err) {
       res.status(500).send(err);
     }
@@ -48,6 +48,7 @@ module.exports = {
     try {
       const restaurants = await getFreeDelivery();
       res.json(restaurants);
+      console.log(restaurants);
     } catch (err) {
       res.status(500).send(err);
     }
@@ -64,7 +65,13 @@ module.exports = {
     try {
       const searchInput = req.params.searchInput
       const restaurants = await getRestaurantsSearch(searchInput)
-      res.json(restaurants)
+
+      const transformedRestaurants = restaurants.map(({ _id, ...rest }) => ({
+            id: _id,
+            ...rest
+      }));
+
+      res.json(transformedRestaurants)
     }
     catch (err) {
       res.status(500).send(err)

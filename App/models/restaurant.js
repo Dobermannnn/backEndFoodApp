@@ -7,17 +7,6 @@ const restaurantSchema = new Schema({
   theme: String,
   img: String,
   addressName: String,
-  address: {
-    type: {
-      type: String,
-      enum: ["Point"],
-      required: true,
-    },
-    coordinates: {
-      type: [Number],
-      required: true,
-    },
-  },
 });
 const Restaurant = model("Restaurant", restaurantSchema);
 module.exports = Restaurant;

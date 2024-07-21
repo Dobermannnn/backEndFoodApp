@@ -6,20 +6,19 @@ module.exports = {
     return allRests.map((rest) => ({
       name: rest.name,
       addressName: rest.addressName,
-      address: rest.address,
       deliveryCost: rest.deliveryCost,
       img: rest.img,
       theme: rest.theme,
+      id: rest._id
     }));
   },
 
   getRestaurant: async (id) => {
     const rest = await Restaurant.findOne({ _id: id });
-    const { deliveryCost, name, addressName ,address, img, theme } = rest;
+    const { deliveryCost, name, addressName, img, theme } = rest;
     return {
       name,
       addressName,
-      address,
       deliveryCost,
       img,
       theme,
@@ -35,18 +34,17 @@ module.exports = {
     return allRests.map((rest) => ({
       name: rest.name,
       addressName: rest.addressName,
-      address: rest.address,
       deliveryCost: rest.deliveryCost,
       img: rest.img,
       theme: rest.theme,
+      id: rest._id
     }));
   },
 
-  addRest: async (name, addressName ,address, deliveryCost, theme, img) => {
+  addRest: async (name, addressName, deliveryCost, theme, img) => {
     const restaurant = new Restaurant({
       name,
       addressName,
-      address,
       deliveryCost,
       theme,
       img,
@@ -60,10 +58,10 @@ module.exports = {
     return allRests.map((rest) => ({
       name: rest.name,
       addressName: rest.addressName,
-      address: rest.address,
       deliveryCost: rest.deliveryCost,
       img: rest.img,
       theme: rest.theme,
+      id: rest._id
     }));
   },
   getAllThemes: async () => {

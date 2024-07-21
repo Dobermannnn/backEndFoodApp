@@ -10,7 +10,6 @@ const foodSchema = new Schema({
     required: true,
   },
   price: Number,
-  img: String,
 });
 const Food = model("Food", foodSchema);
 module.exports = Food;

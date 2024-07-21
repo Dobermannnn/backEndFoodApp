@@ -5,17 +5,7 @@ const userSchema = new Schema({
   name: String,
   email: String,
   password: String,
-  address: {
-    type: {
-      type: String,
-      enum: ["Point"],
-      required: true,
-    },
-    coordinates: {
-      type: [Number],
-      required: true,
-    },
-  },
+  address: String,
   createdAt: { type: Date, default: Date.now },
 });
 const User = model("User", userSchema);

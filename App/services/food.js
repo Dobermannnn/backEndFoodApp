@@ -3,30 +3,28 @@ const Food = require("../models/food");
 module.exports = {
   getFoodById: async (id) => {
     const rest = await Food.findOne({ _id: id });
-    const { name, price, img } = rest;
+    const { name, price } = rest;
     return {
       name,
       price,
-      img,
     };
   },
 
   getFoodByRest: async (id) => {
     const food = await Food.find({ restaurantId: id });
-    const { name, price, img } = food;
-    return {
-      name,
-      price,
-      img,
-    };
+    const foodDetails = food.map(item => ({
+        name: item.name,
+        price: item.price,
+    }));
+
+    return foodDetails;
   },
 
-  addFood: async (name, restaurantId, price, img) => {
+  addFood: async (name, restaurantId, price) => {
     const food = new Food({
       name,
       restaurantId,
       price,
-      img,
     });
     await food.save();
     console.log("Food added successfully:", food);

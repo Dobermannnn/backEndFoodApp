@@ -21,8 +21,8 @@ module.exports = {
   },
   addFood: async (req, res) => {
     try {
-      const { name, restaurantId, price, img } = req.body;
-      const food = await addFood(name, restaurantId, price, img);
+      const { name, restaurantId, price } = req.body;
+      const food = await addFood(name, restaurantId, price);
       res.json(food);
     } catch (err) {
       res.status(500).send(err);
