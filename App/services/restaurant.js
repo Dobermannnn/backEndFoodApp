@@ -83,5 +83,22 @@ module.exports = {
       }
     ]);
     return allThemes[0].themes;
+  },
+  getRestaurantsSearch: async (searchInput) => {
+    if(searchInput.length < 1)
+      return [];
+
+    const regex = new RegExp(searchInput, 'i');
+    const restaurants = await Restaurant.aggregate([
+      {
+        $match: {
+          name: {
+            $regex: regex
+          }
+        }
+      }
+    ]);
+
+    return restaurants;
   }
 };

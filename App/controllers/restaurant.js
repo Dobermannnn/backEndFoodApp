@@ -5,6 +5,7 @@ const {
   getRestaurantByTheme,
   getFreeDelivery,
   getAllThemes,
+  getRestaurantsSearch,
 } = require("../services/restaurant");
 
 module.exports = {
@@ -58,5 +59,15 @@ module.exports = {
     } catch (err) {
       res.status(500).send(err);
     }
-  }
+  },
+  getRestByName: async (req, res) => {
+    try {
+      const searchInput = req.params.searchInput
+      const restaurants = await getRestaurantsSearch(searchInput)
+      res.json(restaurants)
+    }
+    catch (err) {
+      res.status(500).send(err)
+    }
+  },
 };

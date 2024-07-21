@@ -8,5 +8,7 @@ router.get("/Theme/:theme", cacheNoStore, controller.getRestaurantByTheme);
 router.get("/Themes", cacheNoStore, controller.getAllRestaurantThemes);
 router.post("/", cacheNoStore, controller.addRest);
 router.get("/freeDelivery", cacheNoStore, controller.getFreeDelivery);
+router.get('/getRestByName/:searchInput', cacheNoStore, controller.getRestByName);
+
 
 module.exports = router;
