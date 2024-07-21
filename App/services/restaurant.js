@@ -5,6 +5,7 @@ module.exports = {
     const allRests = await Restaurant.find({});
     return allRests.map((rest) => ({
       name: rest.name,
+      addressName: rest.addressName,
       address: rest.address,
       deliveryCost: rest.deliveryCost,
       img: rest.img,
@@ -14,9 +15,10 @@ module.exports = {
 
   getRestaurant: async (id) => {
     const rest = await Restaurant.findOne({ _id: id });
-    const { deliveryCost, name, address, img, theme } = rest;
+    const { deliveryCost, name, addressName ,address, img, theme } = rest;
     return {
       name,
+      addressName,
       address,
       deliveryCost,
       img,
@@ -24,9 +26,15 @@ module.exports = {
     };
   },
   getRestaurantByTheme: async (theme) => {
-    const allRests = await Restaurant.find({ theme: theme });
+    let allRests;
+    if(theme == "All")
+      allRests = await Restaurant.find();
+    else
+      allRests = await Restaurant.find({ theme: theme });
+
     return allRests.map((rest) => ({
       name: rest.name,
+      addressName: rest.addressName,
       address: rest.address,
       deliveryCost: rest.deliveryCost,
       img: rest.img,
@@ -34,9 +42,10 @@ module.exports = {
     }));
   },
 
-  addRest: async (name, address, deliveryCost, theme, img) => {
+  addRest: async (name, addressName ,address, deliveryCost, theme, img) => {
     const restaurant = new Restaurant({
       name,
+      addressName,
       address,
       deliveryCost,
       theme,
@@ -50,10 +59,29 @@ module.exports = {
     const allRests = await Restaurant.find({ deliveryCost: 0 });
     return allRests.map((rest) => ({
       name: rest.name,
+      addressName: rest.addressName,
       address: rest.address,
       deliveryCost: rest.deliveryCost,
       img: rest.img,
       theme: rest.theme,
     }));
   },
+  getAllThemes: async () => {
+    const allThemes = await Restaurant.aggregate([
+      {
+        '$group': {
+          '_id': null, 
+          'themes': {
+            '$addToSet': '$theme'
+          }
+        }
+      }, {
+        '$project': {
+          '_id': 0, 
+          'themes': 1
+        }
+      }
+    ]);
+    return allThemes[0].themes;
+  }
 };
