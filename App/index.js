@@ -9,12 +9,12 @@ const orderRouter = require("./routes/order");
 const app = express();
 
 const corsOptions = {
-  origin: 'http://localhost:8081',
+  origin: '*',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  optionsSuccessStatus: 204
+  optionsSuccessStatus: 204,
+  allowedHeaders: ['Content-Type', 'Authorization'],
 };
 app.use(cors(corsOptions));
-
 app.use(bodyParser.json());
 app.use("/user", userRouter);
 app.use("/rest", restRouter);
