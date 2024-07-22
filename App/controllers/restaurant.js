@@ -48,7 +48,6 @@ module.exports = {
     try {
       const restaurants = await getFreeDelivery();
       res.json(restaurants);
-      console.log(restaurants);
     } catch (err) {
       res.status(500).send(err);
     }

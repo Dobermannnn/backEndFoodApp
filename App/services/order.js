@@ -6,17 +6,16 @@ module.exports = {
     return allOrders.map((order) => ({
       userId: order.userId,
       restaurantId: order.restaurantId,
-      foodIds: order.foodIds,
-      quantity: order.quantity,
+      foodOrdered: order.foodOrdered,
     }));
   },
-  addOrder: async (userId, restId, foodIds, quantity) => {
+  addOrder: async (userId, restaurantId, foodOrdered) => {
     const order = new Order({
       userId,
-      restId,
-      foodIds,
-      quantity,
+      restaurantId,
+      foodOrdered,
     });
+    
     await order.save();
     console.log("Order added successfully:", order);
     return order;

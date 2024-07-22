@@ -15,6 +15,7 @@ module.exports = {
     const foodDetails = food.map(item => ({
         name: item.name,
         price: item.price,
+        id: item._id
     }));
 
     return foodDetails;

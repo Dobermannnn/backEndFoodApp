@@ -9,15 +9,15 @@ module.exports = {
     } catch (err) {
       res.status(500).send(err);
     }
-  },
+  },//ds
 
   addOrder: async (req, res) => {
     try {
-      const { userId, restId, foodIds, quantity } = req.body;
-      const order = await addOrder(userId, restId, foodIds, quantity);
+      const { userId, restaurantId, foodOrdered } = req.body;
+      const order = await addOrder(userId, restaurantId, foodOrdered);
       res.json(order);
     } catch (err) {
-      json.status(500).res(err);
+      res.status(500).send(err);
     }
   },
 };

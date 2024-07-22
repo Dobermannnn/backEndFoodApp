@@ -21,7 +21,6 @@ module.exports = {
   addUser: async (req, res) => {
     try {
       const { name, password, email, address } = req.body;
-      console.log(name);
       const user = await addUser(name, password, email, address);
       res.json(user);
     } catch (err) {
