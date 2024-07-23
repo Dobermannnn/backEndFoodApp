@@ -22,6 +22,7 @@ module.exports = {
       deliveryCost,
       img,
       theme,
+      id
     };
   },
   getRestaurantByTheme: async (theme) => {

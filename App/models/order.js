@@ -21,14 +21,18 @@ const orderSchema = new Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: Food,
       required: true,
-
       },
+
       quantity: {
         type: Number,
         required: true,
-      }
+      },
     },
   ],
+  deliveryCost: {
+        type: Number,
+        required: true,
+  },
 
   createdAt: { type: Date, default: Date.now },
 });
