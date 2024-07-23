@@ -1,4 +1,4 @@
-const { getOrdersByUser, addOrder, getAllFoodsOfOrder } = require("../services/order");
+const { getOrdersByUser, addOrder, getAllFoodsOfOrder, getTopSellersRests, getBestSellerThemes, getUserFavoriteRestaurants } = require("../services/order");
 
 module.exports = {
   getOrdersByUser: async (req, res) => {
@@ -26,6 +26,31 @@ module.exports = {
       const foods = await getAllFoodsOfOrder(id);
       res.json(foods);
     } catch (err) {
+      res.status(500).send(err);
+    }
+  },
+  getTopRestaurants: async (req, res) => {
+    try {
+      const topRest = await getTopSellersRests();
+      res.json(topRest);
+    } catch(err) {
+      res.status(500).send(err);
+    }
+  },
+  getBestThemes: async (req, res) => {
+    try {
+      const themes = await getBestSellerThemes();
+      res.json(themes);
+    } catch(err) {
+      res.status(500).send(err);
+    }
+  },
+  getFavoriteOfUser: async (req, res) => {
+    try {
+      const id = req.params.id;
+      const rests = await getUserFavoriteRestaurants(id);
+      res.json(rests);
+    } catch(e) {
       res.status(500).send(err);
     }
   }
